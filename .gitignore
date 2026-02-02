@@ -9,3 +9,6 @@ out/
 .env
 .env.*
 git status --short
+
+# clerk configuration (can include secrets)
+/.clerk/

@@ -1,7 +1,8 @@
-import { inngest } from "@/lib/inngest";
+
 import connectDB from "@/lib/db";
 import User from "@/models/User";
-
+import { Inngest } from "inngest";
+export const inngest = new Inngest({ id: "ShopCart-next" });
 export const SyncUserCreation = inngest.createFunction(
   { id: "sync-user-from-clerk" },
   { event: "clerk/user.created" },
@@ -23,7 +24,7 @@ export const SyncUserCreation = inngest.createFunction(
 
     await connectDB();
 
-   await User.create(userData)
+    await User.create(userData)
     return { status: "user synced" };
   }
 );
@@ -50,7 +51,7 @@ export const SyncUserUpdation = inngest.createFunction(
 
     await connectDB();
 
-   await User.findByIdAndUpdate(userData)
+    await User.findByIdAndUpdate(userData)
     return { status: "User Details updated" };
   }
 );
@@ -61,17 +62,17 @@ export const SyncUserDeletion = inngest.createFunction(
   async ({ event }) => {
     const {
       id,
-  
+
     } = event.data;
 
     const userData = {
       _id: id,
-  
+
     };
 
     await connectDB();
 
-   await User.findByIdAndDelete(userData)
+    await User.findByIdAndDelete(userData)
     return { status: "User Details Deleted" };
   }
 );
