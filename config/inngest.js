@@ -1,6 +1,6 @@
 
-import connectDB from "@/lib/db";
-import User from "@/models/User";
+import connectDB from "./db.js";
+import User from "../models/User.js";
 import { Inngest } from "inngest";
 export const inngest = new Inngest({ id: "ShopCart-next" });
 export const SyncUserCreation = inngest.createFunction(
